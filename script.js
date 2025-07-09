@@ -1,4 +1,3 @@
-const API_KEY = '26a444805817ba70b4881573b8bcd07d';
 const cities = ['Mumbai', 'Delhi', 'London', 'New York', 'Tokyo'];
 let currentCity = cities[Math.floor(Math.random() * cities.length)];
 
@@ -20,10 +19,9 @@ function convertUnixToTime(unix, offset) {
 }
 
 async function fetchWeather(city) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
-
   try {
-    const res = await fetch(url);
+    const query = city;
+    const res = await fetch(`/.netlify/functions/apiProxy?query=${encodeURIComponent(query)}`);
     const data = await res.json();
 
     el.temp.textContent = data.main.temp.toFixed(1);
