@@ -1,4 +1,4 @@
-const API_KEY = 'YOUR_API_KEY';
+const API_KEY = '26a444805817ba70b4881573b8bcd07d';
 const cities = ['Mumbai', 'Delhi', 'London', 'New York', 'Tokyo'];
 let currentCity = cities[Math.floor(Math.random() * cities.length)];
 
