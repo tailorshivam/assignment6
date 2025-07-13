@@ -20,9 +20,13 @@ function convertUnixToTime(unix, offset) {
 
 async function fetchWeather(city) {
   try {
-    const query = city;
-    const res = await fetch(`/.netlify/functions/apiProxy?query=${encodeURIComponent(query)}`);
+    const API_KEY = '26a444805817ba70b4881573b8bcd07d';
+    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
     const data = await res.json();
+
+    fetch('/.netlify/functions/getWeather?city=London')
+  .then(res => res.json())
+  .then(data => console.log(data));
 
     el.temp.textContent = data.main.temp.toFixed(1);
     el.humidity.textContent = data.main.humidity;
